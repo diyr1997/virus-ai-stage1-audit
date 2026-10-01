@@ -1,27 +1,54 @@
-name: Gemini Code Review
+name: Gemini API Test
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
-  gemini-review:
-    name: Gemini AI Code Review
+  gemini-test:
+    name: Test Gemini API connection
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Gemini Code Review
-        uses: htazq/gemini-code-review-action@main
+      - name: Test Gemini API
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "$GEMINI_API_KEY" ]; then
+            echo "ERROR: GEMINI_API_KEY secret is empty or unavailable"
+            exit 1
+          fi
+
+          echo "GEMINI_API_KEY secret is present"
+
+          curl -fsS \
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent" \
+            -H "x-goog-api-key: $GEMINI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            -d '{
+              "contents": [
+                {
+                  "parts": [
+                    {
+                      "text": "Reply with exactly: GEMINI_CONNECTION_OK"
+                    }
+                  ]
+                }
+              ]
+            }' \
+            > response.json
+
+          cat response.json
+
+          grep -q "GEMINI_CONNECTION_OK" response.json
+
+          echo ""
+          echo "======================================"
+          echo "GEMINI_CONNECTION_OK"
+          echo "Gemini API connection is working."
+          echo "======================================"
