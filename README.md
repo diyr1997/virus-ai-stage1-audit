@@ -1,2 +1,3 @@
-# virus-ai-stage1-audit
-VIRUS AI — Stage 1 Unified Brain audit snapshot
+# Gemini Code Review Test
+
+This file is intentionally added to verify the VIRUS AI Gemini code-review workflow.
