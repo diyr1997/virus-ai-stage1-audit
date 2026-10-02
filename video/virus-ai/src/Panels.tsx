@@ -160,11 +160,11 @@ const Flows: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
     if (dir === 'v2') {
       const last = ids.filter((q) => ctx.reveal(q) > 0).length - 1;
       return (
-        <div key={key} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 250px)', gap: '26px 30px', justifyContent: 'center', marginTop: 30 }}>
+        <div key={key} style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 400px)', gap: '22px 30px', justifyContent: 'center', marginTop: 30 }}>
           {ch.map((t, j) => (
             <div key={t} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <Label color={C.dim} style={{ opacity: ctx.reveal(ids[j]) }}>{String(j + 1).padStart(2, '0')}</Label>
-              <Node text={t} p={ctx.reveal(ids[j])} w={200} hl={j === last} color={t === 'VALIDATION' ? C.green : C.cyan} />
+              <Node text={t} p={ctx.reveal(ids[j])} w={340} small hl={j === last} color={t === 'VALIDATION' ? C.green : C.cyan} />
             </div>))}
         </div>);
     }
@@ -470,25 +470,26 @@ const Leak: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
 
 // ---------- scenarios ----------
 const Scenarios: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
-  const sc = [
-    ['SCENARIO A', 'Yields continue · USD confirms', 'MEDIUM', 0.55, 'USD reverses'],
-    ['SCENARIO B', 'Transmission breaks', 'LOW–MED', 0.35, 'Yields & USD re-align'],
-    ['SCENARIO C', 'Conflicting data', 'LOW', 0.25, 'Clear confirmation'],
-    ['WAIT', 'Evidence insufficient', '—', 0, 'New evidence arrives'],
-  ] as [string, string, string, number, string][];
+  const sc: [string, string, string, number, string][] = ctx.panel.items || [
+    ['SCENARIO A', 'Yields continue · USD confirms', 'CONFIDENCE · MEDIUM', 0.55, 'USD reverses'],
+    ['SCENARIO B', 'Transmission breaks', 'CONFIDENCE · LOW–MED', 0.35, 'Yields & USD re-align'],
+    ['SCENARIO C', 'Conflicting data', 'CONFIDENCE · LOW', 0.25, 'Clear confirmation'],
+    ['WAIT', 'Evidence insufficient', 'CONFIDENCE · —', 0, 'New evidence arrives'],
+  ];
+  const many = sc.length > 4;
   return (
-    <div style={{ display: 'flex', gap: 14, marginTop: 30, justifyContent: 'center' }}>
+    <div style={{ display: 'flex', gap: many ? 8 : 14, marginTop: 30, justifyContent: 'center' }}>
       {sc.map(([h, cond, conf, v, inv], i) => {
-        const p = ctx.reveal(i); const on = ctx.hl(i); const col = i === 3 ? C.white : C.cyan;
+        const p = ctx.reveal(i); const on = ctx.hl(i); const col = toneColor((ctx.panel.tones || [])[i] || (h === 'WAIT' ? 'white' : 'cyan'));
         return (
-          <div key={h} style={{ opacity: p, width: 200, borderRadius: 10, border: `1.5px ${i === 3 ? 'dashed' : 'solid'} ${on ? col : C.line}`, background: on ? col + '14' : C.panel, padding: 16, transform: `translateY(${(1 - p) * 10}px) scale(${on ? 1.05 : 1})`, boxShadow: on ? `0 0 26px ${col}33` : 'none' }}>
-            <div style={{ fontFamily: MONO, fontSize: 19, color: C.text }}>{h}</div>
-            <Label size={11} style={{ marginTop: 16 }}>CONDITIONS</Label>
-            <div style={{ fontFamily: SANS, fontSize: 15, color: C.text, marginTop: 4, height: 40 }}>{cond}</div>
-            <Label size={11} style={{ marginTop: 10 }}>CONFIDENCE · {conf}</Label>
+          <div key={h} style={{ opacity: p, width: many ? 132 : 200, borderRadius: 10, border: `1.5px ${h === 'WAIT' ? 'dashed' : 'solid'} ${on ? col : C.line}`, background: on ? col + '14' : C.panel, padding: many ? 10 : 16, transform: `translateY(${(1 - p) * 10}px) scale(${on ? 1.05 : 1})`, boxShadow: on ? `0 0 26px ${col}33` : 'none' }}>
+            <div style={{ fontFamily: MONO, fontSize: many ? 15 : 19, color: col }}>{h}</div>
+            <Label size={11} style={{ marginTop: 16 }}>{ctx.panel.condLabel || 'CONDITIONS'}</Label>
+            <div style={{ fontFamily: SANS, fontSize: many ? 13 : 15, color: C.text, marginTop: 4, height: many ? 70 : 40 }}>{cond}</div>
+            <Label size={11} style={{ marginTop: 10 }}>{conf}</Label>
             <div style={{ height: 4, background: C.grid, marginTop: 6 }}><div style={{ height: 4, width: `${v * 100}%`, background: col }} /></div>
-            <Label size={11} style={{ marginTop: 12 }}>INVALIDATION</Label>
-            <div style={{ fontFamily: SANS, fontSize: 14, color: C.amber, marginTop: 4 }}>{inv}</div>
+            <Label size={11} style={{ marginTop: 12 }}>{ctx.panel.invLabel || 'INVALIDATION'}</Label>
+            <div style={{ fontFamily: SANS, fontSize: many ? 12 : 14, color: C.amber, marginTop: 4 }}>{inv}</div>
           </div>);
       })}
     </div>
