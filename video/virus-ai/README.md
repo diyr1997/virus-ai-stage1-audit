@@ -40,3 +40,15 @@ npx remotion render src/index.tsx Main out/virus-ai.mp4 --concurrency=4
 4. Сконвертировать `public/mix.wav` в `public/mix.mp3` (`ffmpeg -i public/mix.wav -b:a 160k public/mix.mp3`) и отрендерить заново.
 
 Английские термины в репликах записаны русскими буквами (например, «Коз энджин»), чтобы русский голос их прочитал.
+
+## Живой голос через ElevenLabs
+
+Нужны доступ к `api.elevenlabs.io` и переменная окружения `ELEVENLABS_API_KEY`.
+
+```bash
+TTS_ENGINE=elevenlabs ELEVEN_VOICE_ID=<id голоса> ELEVEN_SPEED=0.95 \
+  SCENES=scenes_simple.json LINE_GAP=0.55 SCENE_GAP=1.2 python script/build_audio.py
+```
+
+Модель по умолчанию `eleven_multilingual_v2` (говорит по-русски). Реплики кешируются в `script/.tts_cache/`,
+поэтому повторный запуск не тратит кредиты.

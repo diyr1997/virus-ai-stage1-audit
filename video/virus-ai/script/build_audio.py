@@ -14,7 +14,44 @@ LINE_GAP = float(os.environ.get("LINE_GAP", "0.26"))
 SCENE_GAP = float(os.environ.get("SCENE_GAP", "0.75"))
 
 
+class _Audio:
+    def __init__(self, samples, sample_rate):
+        self.samples, self.sample_rate = samples, sample_rate
+
+
+class ElevenLabsTTS:
+    """ElevenLabs text-to-speech; raw 22.05 kHz PCM, cached per line so re-runs don't re-bill."""
+
+    def __init__(self):
+        self.key = os.environ["ELEVENLABS_API_KEY"]
+        self.voice = os.environ.get("ELEVEN_VOICE_ID", "JBFqnCBsd6RMkjVDRZzb")
+        self.model = os.environ.get("ELEVEN_MODEL", "eleven_multilingual_v2")
+        self.cache = f"{ROOT}/script/.tts_cache"
+        os.makedirs(self.cache, exist_ok=True)
+
+    def generate(self, text, sid=0, speed=1.0):
+        import hashlib, urllib.request
+        speed = float(os.environ.get("ELEVEN_SPEED", "0.95"))  # ElevenLabs range 0.7–1.2
+        h = hashlib.sha1(f"{self.voice}|{self.model}|{speed}|{text}".encode()).hexdigest()
+        path = f"{self.cache}/{h}.pcm"
+        if not os.path.exists(path):
+            body = json.dumps({
+                "text": text, "model_id": self.model,
+                "voice_settings": {"stability": 0.45, "similarity_boost": 0.8, "style": 0.25,
+                                   "use_speaker_boost": True, "speed": speed},
+            }).encode()
+            req = urllib.request.Request(
+                f"https://api.elevenlabs.io/v1/text-to-speech/{self.voice}?output_format=pcm_22050",
+                data=body, headers={"xi-api-key": self.key, "Content-Type": "application/json"})
+            with urllib.request.urlopen(req, timeout=120) as r:
+                open(path, "wb").write(r.read())
+        pcm = np.frombuffer(open(path, "rb").read(), dtype="<i2").astype(np.float32) / 32768
+        return _Audio(pcm, SR)
+
+
 def make_tts():
+    if os.environ.get("TTS_ENGINE") == "elevenlabs":
+        return ElevenLabsTTS()
     d = f"{TTS_DIR}/vits-piper-ru_RU-{VOICE}-medium"
     onnx = glob.glob(d + "/*.onnx")[0]
     cfg = sherpa_onnx.OfflineTtsConfig(
