@@ -10,7 +10,7 @@ VOICE = os.environ.get("VOICE", "ruslan")
 SPEED = float(os.environ.get("SPEED", "1.08"))
 FPS = 30
 SR = 22050
-LINE_GAP = 0.26
+LINE_GAP = float(os.environ.get("LINE_GAP", "0.26"))
 SCENE_GAP = float(os.environ.get("SCENE_GAP", "0.75"))
 
 

@@ -21,6 +21,9 @@
   Чтобы отрендерить её, скопируйте `variants/short/timeline.json` и `variants/short/mix.mp3` в `public/`.
   Переозвучка: `SCENES=scenes_short.json SPEED=1.38 SCENE_GAP=0.5 python script/build_audio.py`.
 
+- **Простыми словами** (~8,5 мин, для неспециалистов, спокойный темп): `script/scenes_simple.json`, готовые файлы в `variants/simple/`.
+  Переозвучка: `SCENES=scenes_simple.json SPEED=0.78 LINE_GAP=0.55 SCENE_GAP=1.2 python script/build_audio.py`.
+
 ## Рендер
 
 ```bash

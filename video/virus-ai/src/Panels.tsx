@@ -121,9 +121,9 @@ const ChartPanel: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
     <div>
       <Chart ctx={ctx} w={860} h={340} marks={marks} />
       <div style={{ display: 'flex', alignItems: 'center', gap: 24, marginTop: 14, paddingLeft: 40, height: 50 }}>
-        <div style={{ ...ap(pw), fontFamily: MONO, fontSize: 24, color: C.text, letterSpacing: 2 }}>WHAT HAPPENED?</div>
+        <div style={{ ...ap(pw), fontFamily: MONO, fontSize: 24, color: C.text, letterSpacing: 2 }}>{ctx.panel.whatText || 'WHAT HAPPENED?'}</div>
         <div style={{ opacity: py, color: C.cyan, fontSize: 24 }}>→</div>
-        <div style={{ ...ap(py), fontFamily: MONO, fontSize: 34, color: C.cyan, letterSpacing: 3, textShadow: `0 0 18px ${C.cyan}88` }}>WHY?</div>
+        <div style={{ ...ap(py), fontFamily: MONO, fontSize: 34, color: C.cyan, letterSpacing: 3, textShadow: `0 0 18px ${C.cyan}88` }}>{ctx.panel.whyText || 'WHY?'}</div>
       </div>
     </div>
   );
@@ -181,12 +181,12 @@ const Flows: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'center' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'center', justifyContent: 'center', minHeight: 440 }}>
       {boxes.length > 0 && (
         <div style={{ display: 'flex', gap: 12, opacity: 1 - 0.45 * mergeP }}>
           {boxes.map((b, j) => <Node key={b} text={b} p={ctx.reveal(bi[j])} small color={C.muted} />)}
         </div>)}
-      {merge >= 0 && <Label color={C.cyan} style={{ opacity: mergeP }}>— everything happens at the same time —</Label>}
+      {merge >= 0 && <Label color={C.cyan} style={{ opacity: mergeP }}>{P.mergeLabel || '— everything happens at the same time —'}</Label>}
       {side.length > 0 && (
         <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 30 }}>
           <Label color={C.amber} style={{ opacity: ctx.reveal(si[0]) }}>KNOWN TODAY</Label>
@@ -204,9 +204,9 @@ const Flows: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
         </div>
         {alts.length > 0 && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 20 }}>
-            <Label color={C.amber} style={{ opacity: altP }}>ALTERNATIVE EXPLANATIONS</Label>
+            <Label color={C.amber} style={{ opacity: altP }}>{P.altTitle || 'ALTERNATIVE EXPLANATIONS'}</Label>
             {alts.map((a, j) => <Node key={a} text={a} p={ctx.reveal(ai[j])} color={C.amber} w={290} small hl={fresh(ai[j])} />)}
-            <Node text="CAUSAL HYPOTHESIS · UNPROVEN" p={altP} color={C.white} dashed small w={290} style={{ marginTop: 10 }} />
+            <Node text={P.altFooter || "CAUSAL HYPOTHESIS · UNPROVEN"} p={altP} color={C.white} dashed small w={290} style={{ marginTop: 10 }} />
           </div>)}
       </div>
     </div>
@@ -236,7 +236,7 @@ const State: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
         })}
       </div>
       <div style={{ ...ap(b), marginTop: 34, textAlign: 'center' }}>
-        <Label color={C.cyan} size={15}>LAYER 01 · same news + different regime → different reaction</Label>
+        <Label color={C.cyan} size={15}>{ctx.panel.banner || 'LAYER 01 · same news + different regime → different reaction'}</Label>
       </div>
     </div>
   );
@@ -278,14 +278,14 @@ const News: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
 
 // ---------- cards ----------
 const Cards: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
-  const items: [string, string, string][] = ctx.panel.items;
+  const items: [string, string, string, string?][] = ctx.panel.items;
   return (
     <div style={{ display: 'flex', gap: 24, justifyContent: 'center', marginTop: 50 }}>
-      {items.map(([h, s, t], i) => {
+      {items.map(([h, s, t, ic], i) => {
         const p = ctx.reveal(i); const col = toneColor(t); const on = ctx.hl(i);
         return (
           <div key={h} style={{ opacity: p, width: 250, height: 210, borderRadius: 10, border: `1.5px solid ${on ? col : C.line}`, background: on ? col + '18' : C.panel, padding: 22, boxShadow: on ? `0 0 30px ${col}44` : 'none', transform: `translateY(${(1 - p) * 10}px) scale(${on ? 1.05 : 1})` }}>
-            <div style={{ width: 34, height: 34, borderRadius: 17, border: `2px solid ${col}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: col, fontFamily: MONO, fontSize: 18 }}>{i === 0 ? '✓' : i === 1 ? '≠' : '?'}</div>
+            <div style={{ width: 34, height: 34, borderRadius: 17, border: `2px solid ${col}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: col, fontFamily: MONO, fontSize: 18 }}>{ic || (i === 0 ? '✓' : i === 1 ? '≠' : '?')}</div>
             <div style={{ fontFamily: MONO, fontSize: 22, color: C.text, marginTop: 26, letterSpacing: 1.5 }}>{h}</div>
             <div style={{ fontFamily: SANS, fontSize: 16, color: C.muted, marginTop: 10 }}>{s}</div>
           </div>);
@@ -328,7 +328,8 @@ const Network: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
 
 // ---------- history ----------
 const History: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
-  const names = ['HIST. EVENT A', 'HIST. EVENT B', 'HIST. EVENT C', 'TODAY'];
+  const names: string[] = ctx.panel.names || ['HIST. EVENT A', 'HIST. EVENT B', 'HIST. EVENT C', 'TODAY'];
+  const rn: string[] | undefined = ctx.panel.rowNames;
   const rows = [['XAU', ['+1.4%', '−0.3%', '−1.1%', '?']], ['USD·YLD', ['↓ · ↓', '↑ · ↑', '↑ · ↓', '↓ · ↓']], ['VOL', ['LOW', 'HIGH', 'HIGH', 'ELEVATED']], ['REGIME', ['RISK-ON', 'TIGHTENING', 'RISK-OFF', 'TRANSITION']], ['SIMILARITY', ['0.71', '0.38', '0.52', '—']]] as [string, string[]][];
   return (
     <div>
@@ -345,7 +346,7 @@ const History: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
       <div style={{ marginTop: 12 }}>
         {rows.map(([k, vals], ri) => (
           <div key={k} style={{ ...ap(ctx.reveal([4, 4, 5, 6, 7][ri])), display: 'flex', gap: 14, borderTop: `1px solid ${C.grid}`, padding: '7px 0' }}>
-            {vals.map((v, i) => <div key={i} style={{ width: 200, fontFamily: MONO, fontSize: 14, color: i === 3 ? C.gold : C.text, paddingLeft: 10 }}><span style={{ color: C.dim, fontSize: 11, marginRight: 8 }}>{k}</span>{v}</div>)}
+            {vals.map((v, i) => <div key={i} style={{ width: 200, fontFamily: MONO, fontSize: 14, color: i === 3 ? C.gold : C.text, paddingLeft: 10 }}><span style={{ color: C.dim, fontSize: 11, marginRight: 8 }}>{rn ? rn[ri] : k}</span>{v}</div>)}
           </div>))}
       </div>
     </div>
@@ -624,6 +625,38 @@ const Compare: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
   );
 };
 
+// ---------- phone (Telegram message) ----------
+const Phone: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
+  const P = ctx.panel; const rv = ctx.reveal;
+  const opts: string[] = P.options || ['КУПИТЬ', 'ПРОДАТЬ', 'ЖДАТЬ'];
+  const pick: number = P.pick ?? 2;
+  const strength: number = P.strength ?? 48;
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 4 }}>
+      <div style={{ width: 380, height: 430, borderRadius: 34, border: '2px solid #263244', background: '#0e1621', padding: '18px 16px', boxSizing: 'border-box', boxShadow: '0 20px 50px rgba(0,0,0,0.5)', position: 'relative' }}>
+        <div style={{ ...ap(rv(0)), display: 'flex', alignItems: 'center', gap: 10, borderBottom: '1px solid #1f2b3a', paddingBottom: 10 }}>
+          <div style={{ width: 34, height: 34, borderRadius: 17, background: C.cyan, color: '#04121a', fontFamily: SANS, fontWeight: 600, fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>V</div>
+          <div><div style={{ fontFamily: SANS, fontSize: 15, color: C.white, fontWeight: 600 }}>VIRUS AI</div><div style={{ fontFamily: SANS, fontSize: 11, color: C.muted }}>{P.header || 'XAU/USD · анализ H1'}</div></div>
+        </div>
+        <div style={{ ...ap(rv(0)), marginTop: 14, background: '#182533', borderRadius: '14px 14px 14px 4px', padding: 14 }}>
+          <div style={{ display: 'flex', gap: 8, opacity: rv(1) }}>
+            {opts.map((o, i) => { const on = rv(2) > 0 && i === pick; return <div key={o} style={{ flex: 1, textAlign: 'center', padding: '7px 0', borderRadius: 8, fontFamily: SANS, fontWeight: 600, fontSize: 13, border: `1.5px solid ${on ? C.cyan : '#2c3a4c'}`, color: on ? C.cyan : C.muted, background: on ? C.cyanDim : 'transparent' }}>{o}</div>; })}
+          </div>
+          <div style={{ ...ap(rv(3)), marginTop: 14, fontFamily: SANS, fontSize: 13, color: C.muted }}>Сила сигнала</div>
+          <div style={{ opacity: rv(3), display: 'flex', alignItems: 'center', gap: 10, marginTop: 6 }}>
+            <div style={{ flex: 1, height: 8, background: '#0e1621', borderRadius: 4, position: 'relative' }}>
+              <div style={{ width: `${strength * rv(3)}%`, height: 8, borderRadius: 4, background: strength < 60 ? C.amber : C.green }} />
+              <div style={{ position: 'absolute', left: '60%', top: -4, width: 2, height: 16, background: C.white, opacity: 0.6 }} />
+            </div>
+            <div style={{ fontFamily: MONO, fontSize: 14, color: C.text }}>{Math.round(strength * rv(3))}/100</div>
+          </div>
+          {(P.lines || []).map((l: string, i: number) => <div key={i} style={{ ...ap(rv(4 + i)), marginTop: 12, fontFamily: SANS, fontSize: 14, color: i === (P.lines.length - 1) ? C.muted : C.text, lineHeight: 1.35 }}>{l}</div>)}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const Logo: React.FC<{ size?: number; sub?: boolean }> = ({ size = 56, sub = true }) => (
   <div style={{ textAlign: 'center' }}>
     <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: size, letterSpacing: size * 0.22, color: C.white, paddingLeft: size * 0.22 }}>VIRUS<span style={{ color: C.cyan }}> AI</span></div>
@@ -644,7 +677,7 @@ export const Panel: React.FC<{ ctx: Ctx }> = ({ ctx }) => {
   const M: Record<string, React.FC<{ ctx: Ctx }>> = {
     chart: ChartPanel, chips: Chips, flows: Flows, state: State, news: News, cards: Cards, network: Network, history: History,
     council: Council, quant: Quant, micro: Micro, leak: Leak, scenarios: Scenarios, uncertainty: Uncertainty, backtest: Backtest,
-    walk: Walk, arch: Arch, compare: Compare, logo: LogoPanel,
+    walk: Walk, arch: Arch, compare: Compare, logo: LogoPanel, phone: Phone,
   };
   const Comp = M[ctx.panel.type] || LogoPanel;
   return <Comp ctx={ctx} />;

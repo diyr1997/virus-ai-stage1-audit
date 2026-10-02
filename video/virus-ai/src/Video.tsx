@@ -126,7 +126,7 @@ const ARCard: React.FC<{ text: string; p: number }> = ({ text, p }) => (
 const Final: React.FC<{ scene: Scene; frame: number }> = ({ scene, frame }) => {
   const rf = REVEAL[TL.scenes.indexOf(scene)];
   const rv = (i: number) => ease((frame - (rf[i] ?? 1e9)) / 14);
-  const lines = ['UNDERSTAND THE MARKET.', 'UNDERSTAND THE CAUSES.', 'TRACE THE TRANSMISSION.', 'TEST THE HYPOTHESIS.', 'MEASURE THE UNCERTAINTY.', 'VALIDATE BEFORE TRUST.'];
+  const lines: string[] = scene.panel.lines || ['UNDERSTAND THE MARKET.', 'UNDERSTAND THE CAUSES.', 'TRACE THE TRANSMISSION.', 'TEST THE HYPOTHESIS.', 'MEASURE THE UNCERTAINTY.', 'VALIDATE BEFORE TRUST.'];
   const endF = scene.end;
   const out = 1 - ease((frame - (endF - 100)) / 20);
   const again = ease((frame - (endF - 62)) / 25);
