@@ -1,0 +1,156 @@
+[
+  {"id":"s01a","panel":{"type":"chart","title":"XAUUSD · H1","marks":["up","impulse","vol","reversal","what","why"]},"lines":[
+    {"t":"Когда мы смотрим на график золота, мы видим движение цены.","shot":"mon","push":true,"g":"rest","look":"cam","r":0},
+    {"t":"Здесь цена выросла. Здесь появился импульс.","shot":"med","g":"point","look":"mon","r":2},
+    {"t":"Здесь выросла волатильность. А здесь рынок развернулся.","g":"point","look":"mon","r":4},
+    {"t":"Но график отвечает только на один вопрос: что произошло?","shot":"mcu","g":"explain","look":"cam","r":5},
+    {"t":"А настоящий вопрос другой. Почему?","shot":"med","g":"point","look":"mon","r":6,"pause":0.6}
+  ]},
+  {"id":"s01b","panel":{"type":"chips","title":"WHY?","items":["TIMING","PRIOR EVENT","NEW INFORMATION","EXPECTATIONS","USD","BOND YIELDS","TRANSMISSION → XAU"]},"lines":[
+    {"t":"Почему движение началось именно сейчас? Какая информация появилась перед ним?","shot":"med","g":"point","look":"mon","r":3},
+    {"t":"Что изменилось в ожиданиях, в долларе, в доходностях — и как это дошло до золота?","shot":"mon","g":"point","look":"mon","r":7},
+    {"t":"Именно с этого вопроса начинается Вирус Эй Ай.","shot":"mcu","push":true,"g":"rest","look":"cam","r":7,"pause":0.8}
+  ]},
+  {"id":"s02","panel":{"type":"flows","title":"ONE MARKET, MANY CHANNELS","boxes":["PRICE","NEWS","CALENDAR","FX","BONDS","HISTORY"],"chains":[["RATES","BONDS","USD","GOLD"],["EQUITIES","RISK","GOLD"]]},"lines":[
+    {"t":"Обычно цена, новости, валюты, облигации и история живут в отдельных системах.","shot":"wide","g":"point","look":"mon","r":6},
+    {"t":"Но реальный рынок не разделён на коробки. Всё происходит одновременно.","shot":"med","g":"sweep","look":"mon","r":7},
+    {"t":"Ставки меняют доходности, доходности — доллар, доллар — условия для золота.","shot":"mon","g":"point","look":"mon","r":11},
+    {"t":"А риск на фондовом рынке может сдвинуть золото ещё до очевидного движения.","g":"point","look":"mon","r":14},
+    {"t":"Поэтому одна свеча никогда не рассказывает всю историю.","shot":"mcu","g":"explain","look":"cam","r":14,"pause":0.6}
+  ]},
+  {"id":"s03","panel":{"type":"chips","title":"VIRUS AI · LAYERS","items":["PRICE","NEWS","MACRO","FX","BONDS","OIL","EQUITIES","CENTRAL BANKS","POSITIONING","HISTORY","QUANT DATA","AI MODELS"],"logo":true},"lines":[
+    {"t":"Вирус Эй Ай — это не индикатор, не торговый робот и не просто языковая модель.","shot":"med","g":"stop","look":"cam","r":0},
+    {"t":"Это попытка собрать рынок в одну причинно-аналитическую систему.","shot":"wide","g":"sweep","look":"mon","r":0},
+    {"t":"Цена, новости, макро, валюты, облигации, нефть, акции.","shot":"mon","g":"point","look":"mon","r":7},
+    {"t":"Центральные банки, позиционирование, история, количественные данные и разные Эй Ай модели.","g":"point","look":"mon","r":12,"pause":0.6}
+  ]},
+  {"id":"s04","panel":{"type":"state","title":"GLOBAL MARKET STATE","items":[["REGIME","TRANSITION","amber"],["VOLATILITY","ELEVATED","amber"],["RISK","RISK-OFF","red"],["LIQUIDITY","THIN","amber"],["YIELDS","RISING","cyan"],["USD","FIRM","cyan"],["PRICED IN","PARTIAL","cyan"],["KNOWN AT T","POINT-IN-TIME","white"]]},"lines":[
+    {"t":"Первый слой — Глобал маркет стейт. Какой сейчас режим?","shot":"side","g":"explain","look":"cam","r":2},
+    {"t":"Риск или бегство от риска? Ликвидность, доходности, доллар?","shot":"med","g":"point","look":"mon","r":6},
+    {"t":"Что уже заложено в цены — и что рынок знал именно в этот момент?","g":"point","look":"mon","r":8},
+    {"t":"Одна и та же новость в разных условиях даёт разную реакцию.","shot":"mcu","g":"explain","look":"cam","r":9,"pause":0.6}
+  ]},
+  {"id":"s05","panel":{"type":"news","title":"NEWS RELEASE","items":["PUBLISHED","RECEIVED","EXPECTATIONS","BONDS","YIELDS","USD","XAUUSD"]},"lines":[
+    {"t":"Пример. Выходит важная экономическая статистика.","shot":"wide","g":"point","look":"mon","r":1,"ar":"NEWS RELEASE"},
+    {"t":"Новость получена. Меняются ожидания, облигации, доходность.","shot":"mon","g":"point","look":"mon","r":6},
+    {"t":"Движется доллар, а следом — золото.","g":"point","look":"mon","r":8},
+    {"t":"Легко сказать: новость вызвала рост золота.","shot":"med","g":"open","look":"cam","r":9},
+    {"t":"Но это не доказательство. Это гипотеза.","shot":"mcu","g":"stop","look":"cam","r":10,"pause":0.6}
+  ]},
+  {"id":"s06","panel":{"type":"flows","title":"CAUSE ENGINE","dir":"v","chains":[["EVENT","EXPECTATIONS","BONDS","YIELDS","USD","XAUUSD"]],"alts":["ALREADY PRICED IN","OTHER EVENT","POSITIONING","COINCIDENCE"]},"lines":[
+    {"t":"Коз энджин проверяет: существует ли здесь причинная цепочка?","shot":"med","g":"point","look":"mon","r":1},
+    {"t":"Событие изменило ожидания, ожидания — доходности, доходности — доллар, а доллар — золото.","shot":"mon","g":"point","look":"mon","r":6},
+    {"t":"Но есть и другие объяснения.","shot":"med","g":"stop","look":"cam","r":6},
+    {"t":"Рынок мог заранее ждать публикацию. Могло случиться другое событие.","g":"point","look":"mon","r":8},
+    {"t":"Могло сработать позиционирование. Или это просто совпадение.","g":"point","look":"mon","r":10},
+    {"t":"Поэтому система не влюбляется в первое красивое объяснение.","shot":"mcu","push":true,"g":"explain","look":"cam","r":10,"pause":0.6}
+  ]},
+  {"id":"s07","panel":{"type":"cards","title":"EVIDENCE STATUS","items":[["EVIDENCE","supports the hypothesis","cyan"],["CONTRADICTION","sources disagree","amber"],["UNKNOWN","data not available","white"]]},"lines":[
+    {"t":"Важнейшая функция — возможность сказать: анноун. Неизвестно.","shot":"mcu","g":"open","look":"cam","r":3,"hl":2},
+    {"t":"Если доказательств мало — система не придумывает уверенный ответ.","shot":"med","g":"stop","look":"cam","r":3,"hl":0},
+    {"t":"Если источники спорят или данных нет — это видно.","shot":"mon","g":"point","look":"mon","r":3,"hl":1},
+    {"t":"Не знать — не то же самое, что знать, что этого не было.","shot":"mcu","push":true,"g":"explain","look":"cam","r":3,"pause":0.6}
+  ]},
+  {"id":"s08","panel":{"type":"network","title":"CROSS-MARKET TRANSMISSION ENGINE"},"lines":[
+    {"t":"Дальше — Кросс-маркет трансмишн энджин. Как причина передалась?","shot":"side","g":"explain","look":"cam","r":1},
+    {"t":"Рынок — это сеть: макро, облигации, доходности, валюты.","shot":"med","g":"point","look":"mon","r":3},
+    {"t":"Акции, нефть, риск и золото.","shot":"mon","g":"point","look":"mon","r":4},
+    {"t":"Что было первым, что последовало потом, и где связь подтверждается?","g":"point","look":"mon","r":6},
+    {"t":"А где просто два события совпали по времени?","shot":"med","g":"open","look":"cam","r":7,"pause":0.6}
+  ]},
+  {"id":"s09","panel":{"type":"history","title":"HISTORICAL ANALOGUES"},"lines":[
+    {"t":"Было ли что-то похожее раньше? Система ищет исторические аналоги.","shot":"med","g":"point","look":"mon","r":3},
+    {"t":"Не чтобы сказать: тогда было так, значит, будет так же. История не гарантирует будущее.","shot":"mcu","g":"stop","look":"cam","r":3},
+    {"t":"Но она помогает проверить гипотезу.","shot":"med","g":"point","look":"mon","r":4},
+    {"t":"Как реагировали золото, доллар, доходности? Какой была волатильность и режим рынка?","shot":"mon","g":"point","look":"mon","r":7},
+    {"t":"И насколько сегодня действительно похоже на прошлое?","shot":"med","g":"explain","look":"cam","r":8,"pause":0.6}
+  ]},
+  {"id":"s10","panel":{"type":"council","title":"AI COUNCIL"},"lines":[
+    {"t":"Следующий уровень — Эй Ай Каунсил. Несколько моделей смотрят на одну ситуацию.","shot":"med","g":"point","look":"mon","r":5},
+    {"t":"Но пять моделей — не пять доказательств. Общая ошибочная предпосылка даст общую ошибку.","shot":"mcu","g":"count","look":"cam","r":6},
+    {"t":"Совет нужен для сравнения, критики и проверки аргументов.","shot":"mon","g":"point","look":"mon","r":9},
+    {"t":"И для разделения фактов, предположений и интерпретаций.","shot":"med","g":"count","look":"cam","r":10,"pause":0.6}
+  ]},
+  {"id":"s11","panel":{"type":"quant","title":"QUANT & MATHEMATICAL INTELLIGENCE","items":["TIME SERIES","PROBABILITY","VOLATILITY","CORRELATION","REGIMES","ANOMALIES","DEPENDENCIES","CALIBRATION","ROBUSTNESS"]},"lines":[
+    {"t":"Рассуждений мало. Рынок нужно измерять.","shot":"med","g":"stop","look":"cam","r":1},
+    {"t":"Временные ряды, вероятности, волатильность, корреляции, режимы.","shot":"mon","g":"point","look":"mon","r":6},
+    {"t":"Аномалии, зависимости, калибровка прогнозов и устойчивость.","g":"point","look":"mon","r":10},
+    {"t":"И главное — проверка на данных, которых модель не видела.","shot":"mcu","push":true,"g":"explain","look":"cam","r":11,"pause":0.6}
+  ]},
+  {"id":"s12","panel":{"type":"micro","title":"MARKET MICROSTRUCTURE"},"lines":[
+    {"t":"На коротких горизонтах есть ещё слой — микроструктура.","shot":"side","g":"explain","look":"cam","r":1},
+    {"t":"Бид, аск, спред, тики, ликвидность, глубина, ордер флоу.","shot":"mon","g":"point","look":"mon","r":5},
+    {"t":"Но данные одного брокера — это одна площадка, а не мировой стакан золота.","shot":"med","g":"stop","look":"cam","r":6,"ar":"BROKER / VENUE SPECIFIC"},
+    {"t":"Поэтому система должна знать происхождение данных.","shot":"mon","g":"point","look":"mon","r":10,"pause":0.6}
+  ]},
+  {"id":"s13","panel":{"type":"flows","title":"POINT-IN-TIME","dir":"h","chains":[["EVENT TIME","PUBLICATION","AVAILABLE","MARKET REACTION"]],"side":["REVISED DATA","LATE PUBLICATIONS","LATER RESEARCH"]},"lines":[
+    {"t":"Теперь — время. Сегодня у нас есть пересмотренные данные и поздние публикации.","shot":"med","g":"point","look":"mon","r":3},
+    {"t":"Но рынок тогда этого не знал.","shot":"mcu","g":"stop","look":"cam","r":3},
+    {"t":"Система восстанавливает информационное состояние того момента:","shot":"med","g":"explain","look":"cam","r":3},
+    {"t":"событие, публикация, доступность, реакция рынка.","shot":"mon","g":"point","look":"mon","r":7,"pause":0.6}
+  ]},
+  {"id":"s14","panel":{"type":"leak","title":"NO LOOK-AHEAD"},"lines":[
+    {"t":"Поэтому нужен Пойнт ин тайм и контроль лук эхэд: никакой информации из будущего.","shot":"med","g":"point","look":"mon","r":1},
+    {"t":"Такие ошибки делают модель красивее, чем в реальности.","shot":"mcu","g":"explain","look":"cam","r":1},
+    {"t":"Прошлое ведёт к будущему. Но будущее не возвращается в прошлое.","shot":"mon","g":"point","look":"mon","r":3,"pause":0.6}
+  ]},
+  {"id":"s15","panel":{"type":"scenarios","title":"XAU SCENARIO ENGINE"},"lines":[
+    {"t":"После анализа система не выдаёт одну цифру. Она строит сценарии.","shot":"med","g":"point","look":"mon","r":3},
+    {"t":"Доходности и доллар подтверждают — первый. Передача ломается — второй. Данные противоречат — третий.","shot":"mon","g":"point","look":"mon","r":3,"hl":[0,1,2]},
+    {"t":"А если доказательств мало — нормальный ответ: вэйт.","shot":"med","g":"open","look":"cam","r":4,"hl":3,"pause":0.6}
+  ]},
+  {"id":"s16","panel":{"type":"uncertainty","title":"UNCERTAINTY MAP"},"lines":[
+    {"t":"Серьёзная система показывает границы своей уверенности.","shot":"med","push":true,"g":"explain","look":"cam","r":1},
+    {"t":"Что поддерживает гипотезу, что противоречит, что неизвестно и что её опровергнет?","shot":"mon","g":"point","look":"mon","r":5},
+    {"t":"Какие есть альтернативы и устойчив ли вывод?","g":"point","look":"mon","r":7},
+    {"t":"Уверенность без понимания неопределённости — опасная иллюзия.","shot":"mcu","push":true,"g":"lean","look":"cam","r":7,"pause":0.8}
+  ]},
+  {"id":"s17","panel":{"type":"backtest","title":"BACKTESTING"},"lines":[
+    {"t":"Затем — настоящая проверка, а не красивый график.","shot":"med","g":"stop","look":"cam","r":0},
+    {"t":"Спред, комиссии, проскальзывание, задержки, ликвидность, исполнение.","shot":"mon","g":"point","look":"mon","r":6},
+    {"t":"Разные режимы рынка — и данные, которых модель не видела.","g":"point","look":"mon","r":12,"pause":0.5}
+  ]},
+  {"id":"s18","panel":{"type":"walk","title":"WALK-FORWARD"},"lines":[
+    {"t":"Уок форвард: обучение на прошлом, проверка на следующем периоде.","shot":"mon","g":"point","look":"mon","r":2},
+    {"t":"Потом окно сдвигается — и всё повторяется.","g":"sweep","look":"mon","r":4},
+    {"t":"Модель, которая работает на одном участке истории, ещё ничего не доказала.","shot":"mcu","g":"stop","look":"cam","r":5,"pause":0.6}
+  ]},
+  {"id":"s19","panel":{"type":"flows","title":"VALIDATION PATH","dir":"v","chains":[["RESEARCH","BACKTEST","OOS","SHADOW","DEMO"]],"locked":"REAL EXECUTION — LOCKED"},"lines":[
+    {"t":"Даже успешный тест не означает реальных денег.","shot":"med","g":"stop","look":"cam","r":0},
+    {"t":"Исследование, бэктест, аут оф сэмпл, шэдоу, демо.","shot":"mon","g":"point","look":"mon","r":5},
+    {"t":"Реальная торговля автоматически не включается.","shot":"med","g":"explain","look":"cam","r":6,"pause":0.6}
+  ]},
+  {"id":"s20","panel":{"type":"arch","title":"UNIFIED ARCHITECTURE"},"lines":[
+    {"t":"Все эти слои объединяются в одну систему.","shot":"wide","g":"sweep","look":"mon","r":11},
+    {"t":"Цена показывает реакцию, новости — информационный поток, макро — контекст, квант измеряет.","shot":"mon","g":"point","look":"mon","r":11,"hl":[0,1,2,3]},
+    {"t":"Коз энджин строит гипотезы, Трансмишн энджин отслеживает передачу, история даёт сравнение.","g":"point","look":"mon","r":11,"hl":[4,5,6]},
+    {"t":"Совет критикует, сценарии описывают варианты, а валидация проверяет всё реальностью.","shot":"med","g":"open","look":"cam","r":11,"hl":[7,8,9],"pause":0.6}
+  ]},
+  {"id":"s21","panel":{"type":"flows","title":"XAUUSD · FULL ANALYSIS PATH","dir":"v2","chains":[["PRICE","CONTEXT","CAUSE","TRANSMISSION","HISTORY","ALTERNATIVES","UNCERTAINTY","SCENARIO","VALIDATION"]]},"lines":[
+    {"t":"Итак, золото резко двинулось.","shot":"med","g":"lean","look":"cam","r":1},
+    {"t":"Система фиксирует движение, определяет контекст, строит причинные цепочки и следит за передачей.","shot":"mon","g":"point","look":"mon","r":4},
+    {"t":"Сравнивает с историей, ищет альтернативы, измеряет неопределённость.","g":"point","look":"mon","r":7},
+    {"t":"И только затем формирует сценарии и проверяет их.","g":"point","look":"mon","r":9,"pause":0.6}
+  ]},
+  {"id":"s22","panel":{"type":"compare","title":"SIGNAL vs CAUSAL ANALYSIS"},"lines":[
+    {"t":"Обычная система скажет: золото выросло. Или: возможно продолжение.","shot":"med","g":"point","look":"mon","r":2},
+    {"t":"Вирус Эй Ай спрашивает: почему? Что было до? Что было известно?","shot":"mon","g":"point","look":"mon","r":5},
+    {"t":"Какая цепочка правдоподобнее? Какие есть альтернативы, противоречия, исторические параллели?","g":"point","look":"mon","r":9},
+    {"t":"И что мы пока просто не знаем?","shot":"mcu","g":"open","look":"cam","r":10,"pause":0.8}
+  ]},
+  {"id":"s23","panel":{"type":"logo","dim":true},"lines":[
+    {"t":"Рынок невозможно знать идеально. И Вирус Эй Ай не делает вид, что это возможно.","shot":"mcu","push":true,"g":"rest","look":"cam"},
+    {"t":"Её задача — дисциплинированно работать с доступной информацией и проверять гипотезы до того, как им доверять.","shot":"med","g":"explain","look":"cam","pause":1.2},
+    {"t":"Хороший анализ начинается не с вопроса: куда пойдёт цена?","shot":"mcu","push":true,"g":"rest","look":"cam","pause":0.4},
+    {"t":"А с вопроса: почему рынок движется именно сейчас?","g":"lean","look":"cam","pause":1.2}
+  ]},
+  {"id":"s24","panel":{"type":"final"},"lines":[
+    {"t":"Вирус Эй Ай.","shot":"black","g":"rest","look":"cam","r":1,"pause":0.4},
+    {"t":"Андерстэнд зэ маркет.","g":"rest","look":"cam","r":2},
+    {"t":"Андерстэнд зэ козэс.","g":"rest","look":"cam","r":3},
+    {"t":"Трэйс зэ трансмишн.","g":"rest","look":"cam","r":4},
+    {"t":"Тэст зэ хайпотэсис.","g":"rest","look":"cam","r":5},
+    {"t":"Мэжэ зэ ансёртэнти.","g":"rest","look":"cam","r":6},
+    {"t":"Валидэйт бифор траст.","g":"rest","look":"cam","r":7,"pause":3.5}
+  ]}
+]

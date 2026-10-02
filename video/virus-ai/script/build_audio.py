@@ -11,7 +11,7 @@ SPEED = float(os.environ.get("SPEED", "1.08"))
 FPS = 30
 SR = 22050
 LINE_GAP = 0.26
-SCENE_GAP = 0.75
+SCENE_GAP = float(os.environ.get("SCENE_GAP", "0.75"))
 
 
 def make_tts():
@@ -73,7 +73,7 @@ def ambient(total_s, scene_spans):
 
 
 def main():
-    scenes = json.load(open(f"{ROOT}/script/scenes.json"))
+    scenes = json.load(open(f"{ROOT}/script/" + os.environ.get("SCENES", "scenes.json")))
     tts = make_tts()
     lead_in = 1.2
     chunks, cur = [np.zeros(int(lead_in * SR))], lead_in

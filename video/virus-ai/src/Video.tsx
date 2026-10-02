@@ -128,8 +128,8 @@ const Final: React.FC<{ scene: Scene; frame: number }> = ({ scene, frame }) => {
   const rv = (i: number) => ease((frame - (rf[i] ?? 1e9)) / 14);
   const lines = ['UNDERSTAND THE MARKET.', 'UNDERSTAND THE CAUSES.', 'TRACE THE TRANSMISSION.', 'TEST THE HYPOTHESIS.', 'MEASURE THE UNCERTAINTY.', 'VALIDATE BEFORE TRUST.'];
   const endF = scene.end;
-  const out = 1 - ease((frame - (endF - 140)) / 25);
-  const again = ease((frame - (endF - 85)) / 30);
+  const out = 1 - ease((frame - (endF - 100)) / 20);
+  const again = ease((frame - (endF - 62)) / 25);
   return (
     <AbsoluteFill style={{ background: '#020305', alignItems: 'center', justifyContent: 'center' }}>
       <div style={{ opacity: out, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

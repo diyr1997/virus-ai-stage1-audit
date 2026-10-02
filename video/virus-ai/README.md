@@ -14,6 +14,13 @@
 - `src/Panels.tsx` — экраны монитора (график, Cause Engine, Transmission, AI Council, сценарии и т. д.).
 - `public/mix.mp3` + `public/timeline.json` — готовые озвучка с музыкой и тайминги.
 
+## Версии
+
+- **Полная** (~11 мин, весь мастер-сценарий): `script/scenes.json`, готовые файлы в `public/`.
+- **Короткая** (~6 мин): `script/scenes_short.json`, готовые файлы в `variants/short/`.
+  Чтобы отрендерить её, скопируйте `variants/short/timeline.json` и `variants/short/mix.mp3` в `public/`.
+  Переозвучка: `SCENES=scenes_short.json SPEED=1.38 SCENE_GAP=0.5 python script/build_audio.py`.
+
 ## Рендер
 
 ```bash
